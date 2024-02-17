@@ -28,9 +28,39 @@ def analyze_urine_color(color):
         return "Possible liver issues"
     else:
         return "Consult a doctor for detailed analysis"
+    
+def adjustImg(img, value = 30):
+    ## CLAHE ADJUSTMENT
+    # Convert the image from BGR to LAB color space
+    lab = cv2.cvtColor(img, cv2.COLOR_BGR2LAB)
+    l_channel, a, b = cv2.split(lab)
+    
+    # Apply CLAHE to L-channel
+    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
+    c_l_channel = clahe.apply(l_channel)
+    
+    # Merge the CLAHE enhanced L-channel with the original a and b channel
+    lab = cv2.merge((c_l_channel, a, b))
+    
+    # Convert the LAB image back to BGR
+    corrected_image = cv2.cvtColor(lab, cv2.COLOR_LAB2BGR)
+
+    ## BRIGHTNESS ADJUSTMENT
+    hsv = cv2. cvtColor(corrected_image, cv2.COLOR_BGR2HSV)
+    h,s,v = cv2.split(hsv)
+
+    lim = 255 - cv2.split(hsv)
+    v[v > lim] = 255
+    v[v <= lim] += value
+
+    final_hsv = cv2.merge((h, s, v))
+    finalImg = cv2.cvtColor(final_hsv, cv2.COLOR_HSV2BGR)
+
+    return finalImg
 
 def analyze_image(img):
-    predominant_color = find_predominant_color(img)
+    imgStd = adjustImg(img)
+    predominant_color = find_predominant_color(imgStd)
     health_status = analyze_urine_color(predominant_color)
 
     # Convert numpy types to regular Python types
