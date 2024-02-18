@@ -3,7 +3,6 @@ from flask_cors import CORS
 import cv2
 import numpy as np
 from sklearn.cluster import KMeans
-import colorsys
 
 app = Flask(__name__)
 CORS(app)  # This is crucial for cross-origin requests from your React app
@@ -19,18 +18,37 @@ def find_predominant_color_rgb(image):
     return tuple(predominant_color)
 
 def analyze_urine_color(color_hsv):
+    
+    #Black
     if color_hsv[2] <=45:
-        return "Very Dark" #severe dehydration
-    elif color_hsv[0] > 45 and color_hsv[0] < 65 and color_hsv[2] > 85:
+        return "Black" #severe dehydration
+    
+    #Clear
+    elif color_hsv [2] >= 95:
+        return "Clear"
+    
+    #Pale Yellow and Dark Yellow
+    elif color_hsv[0] > 45 and color_hsv[0] <= 65 and color_hsv[2] > 85:
         return "Pale Yellow"
-    elif color_hsv[0] > 45 and color_hsv[0] < 65 and color_hsv[2] <= 85:
+    elif color_hsv[0] > 45 and color_hsv[0] <= 65 and color_hsv[2] <= 85:
         return "Dark Yellow"
-    elif color_hsv[0] > 25 and color_hsv[0] < 45 and color_hsv[2] > 85:
+    
+    #Orange and Dark Orange/Brown
+    elif color_hsv[0] > 25 and color_hsv[0] <= 45 and color_hsv[2] > 75:
         return "Orange"
-    elif color_hsv[0] > 25 and color_hsv[0] < 45 and color_hsv[2] <= 85:
-        return "Dark Orange"
+    elif color_hsv[0] > 25 and color_hsv[0] <= 45 and color_hsv[2] <= 75:
+        return "Dark Orange/Brown"
+    
+    #Pink or Red
+    elif (color_hsv[0] >= 0 and color_hsv[0] <= 25) or (color_hsv[0] > 270 and color_hsv[0] <= 360):
+        return "Pink or Red"
+    
+    #Blue or Green
+    elif (color_hsv[0] > 65 and color_hsv[0] <= 270):
+        return "Blue or Green"
+    
     else:
-        return "Consult a doctor for detailed analysis"
+        return "Consult a doctor for a detailed analysis"
     
 def rgb_to_hsv(r, g, b):
     r, g, b = r/255.0, g/255.0, b/255.0
