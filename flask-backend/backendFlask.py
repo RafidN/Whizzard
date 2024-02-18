@@ -18,13 +18,17 @@ def find_predominant_color_rgb(image):
     predominant_color = kmeans.cluster_centers_.astype(int)[0]
     return tuple(predominant_color)
 
-def analyze_urine_color(color_rgb):
-    if color_rgb[0] > 200 and color_rgb[1] > 200 and color_rgb[2] > 160:
-        return "Healthy (Hydrated)"
-    elif color_rgb[0] > 160 and color_rgb[1] > 160 and color_rgb[2] < 100:
-        return "Dehydrated"
-    elif color_rgb[0] < 100 and color_rgb[1] > 100:
-        return "Possible liver issues"
+def analyze_urine_color(color_hsv):
+    if color_hsv[2] <=45:
+        return "Very Dark" #severe dehydration
+    elif color_hsv[0] > 45 and color_hsv[0] < 65 and color_hsv[2] > 85:
+        return "Pale Yellow"
+    elif color_hsv[0] > 45 and color_hsv[0] < 65 and color_hsv[2] <= 85:
+        return "Dark Yellow"
+    elif color_hsv[0] > 25 and color_hsv[0] < 45 and color_hsv[2] > 85:
+        return "Orange"
+    elif color_hsv[0] > 25 and color_hsv[0] < 45 and color_hsv[2] <= 85:
+        return "Dark Orange"
     else:
         return "Consult a doctor for detailed analysis"
     
@@ -78,7 +82,7 @@ def analyze_image(img):
     
     color_hsv = rgb_to_hsv(color_rgb[0], color_rgb[1], color_rgb[2])
     brightened_hsv = add_thirty_value(color_hsv)
-    health_status = analyze_urine_color(color_rgb)
+    health_status = analyze_urine_color(brightened_hsv)
     health_status = str(health_status)
 
     return {"status": health_status, "predominant_color_rgb": color_rgb, "brightened_color_hsv": brightened_hsv}
