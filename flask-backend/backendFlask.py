@@ -21,31 +21,31 @@ def analyze_urine_color(color_hsv):
     
     #Black
     if color_hsv[2] <=45:
-        return "Black" #severe dehydration
+        return "Dark brown or black: Dark brown or black urine is indicative of severe hydration levels and may signal an underlying health concern. This profound discoloration is often associated with the presence of certain substances, such as blood or other pigments, in the urine. It can be a potential indication of a more serious condition, including but not limited to kidney or liver issues, hemolysis (breakdown of red blood cells), or certain medications... | Whizzard strongly recommends seeking medical attention promptly to address the root cause of the discoloration and determine the appropriate course of action for optimal health and well-being!" #severe dehydration
     
     #Clear
-    elif color_hsv [2] >= 95:
-        return "Clear"
+    elif color_hsv[1] <= 21 and color_hsv[2] >= 95:
+        return "Clear: Clear urine is indicative of optimal hydration levels, often resulting from a well-maintained water intake. While this is generally favorable for healthy kidney function, it's important to be mindful of potential overhydration, leading to an electrolyte imbalance due to a substantial increase in water intake... | Whizzard suggests considering a moderation in water consumption to maintain a harmonious electrolyte balance while supporting overall well-being!"
     
     #Pale Yellow and Dark Yellow
     elif color_hsv[0] > 45 and color_hsv[0] <= 65 and color_hsv[2] > 85:
-        return "Pale Yellow"
-    elif color_hsv[0] > 45 and color_hsv[0] <= 65 and color_hsv[2] <= 85:
-        return "Dark Yellow"
+        return "Pale or transparent yellow: Pale or transparent urine is indicative of optimal hydration levels, often resulting from a well-maintained water intake... | Whizzard suggests maintaining this hydration approach to achieve an optimal balance for overall health and wellness!"
     
-    #Orange and Dark Orange/Brown
-    elif color_hsv[0] > 25 and color_hsv[0] <= 45 and color_hsv[2] > 75:
-        return "Orange"
+    #Dark Yellow or Orange
+    elif (color_hsv[0] > 45 and color_hsv[0] <= 65 and color_hsv[2] <= 85) or (color_hsv[0] > 25 and color_hsv[0] <= 45 and color_hsv[2] > 75):
+        return "Dark yellow or orange: Dark yellow urine is indicative of suboptimal hydration levels, often resulting from insufficient water intake. Orange urine could also be a result of a change of diet, especially carrots. This darker hue is typically attributed to a reduced volume of water available to dissolve and excrete waste products. This decrease in fluid levels leads to a higher concentration of minerals in the urine, resulting in its darker appearance. Additionally, the reduction in normal water content within the body can adversely affect physiological functions due to the imbalance of electrolytes... | Whizzard recommends an immediate consumption of 2-3 cups of water and an overall increase in water intake to restore an adequate balance of electrolytes!"
+    
+    #Dark Orange/Brown
     elif color_hsv[0] > 25 and color_hsv[0] <= 45 and color_hsv[2] <= 75:
-        return "Dark Orange/Brown"
+        return "Dark orange or brown: Dark orange or brown urine is indicative of suboptimal hydration levels, often stemming from insufficient water intake. This intense coloration is typically associated with a significant decrease in volume of water available to dissolve and eliminate waste products. The diminished fluid levels contribute to a higher concentration of minerals in the urine, manifesting in the dark orange or brown appearance. Moreover, this could represent an increased workload on the kidneys, as they strive to filter and excrete waste products in a more concentrated urine, which could negatively impact physiological functions... | Whizzard recommends an immediate intake of 2-3 cups of water and an overall increase of water consumption to restore a balance of electrolytes, potentially relieving kidney stress and supporting optimal well-being."
     
     #Pink or Red
     elif (color_hsv[0] >= 0 and color_hsv[0] <= 25) or (color_hsv[0] > 270 and color_hsv[0] <= 360):
-        return "Pink or Red"
+        return "Pink or red: The presence of pink or red urine can be indicative of various factors, including the presence of blood. This discoloration may stem from conditions such as urinary tract infections, kidney stones, trauma, or other underlying health issues. However, this could be a result of a change of diet, such as beets... | Whizzard strongly suggests promptly consulting with a healthcare professional if blood is clearly noticed in the urine, to identify the underlying cause and appropriate course of action for optimal health and well-being!"
     
     #Blue or Green
     elif (color_hsv[0] > 65 and color_hsv[0] <= 270):
-        return "Blue or Green"
+        return "Blue or green: Blue or green urine can be influenced by various factors. Certain brightly colored food dyes, particularly methylene blue, and the consumption of asparagus are known to cause greenish discoloration. Additionally, urinary tract infections can contribute to changes in urine color, including shades of blue or green. If you observe persistent blue or green urine, it is advisable to consult with a healthcare professional for a comprehensive evaluation... | Whizzard suggests discussing dietary habits, medications, and the possibility of a urinary tract infection with your healthcare provider to help identify the specific cause and ensure appropriate measures are taken for optimal health!"
     
     else:
         return "Consult a doctor for a detailed analysis"
