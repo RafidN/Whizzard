@@ -1,30 +1,152 @@
-.App {
-  text-align: center;
-  margin: 50px;
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  color: white;
 }
+
+/* GENERAL */
+
 
 h1 {
-  font-size: 2em;
-  margin-bottom: 20px;
+  font-size: 24px;
+  color: white;
 }
 
-input {
-  margin: 10px;
-}
-
-button {
-  padding: 10px 20px;
-  font-size: 1em;
-  cursor: pointer;
-}
-
-div {
-  margin-top: 20px;
-  padding: 10px;
-  border: 1px solid #ccc;
-}
 
 h2 {
-  font-size: 1.5em;
-  margin-bottom: 10px;
+  font-size: 18px;
 }
+
+
+.border-around {
+  border: 2px black solid;
+  border-radius: 20px;
+  padding: 20px 20px;
+  background: rgb(70, 82, 158);
+}
+
+
+.btn {
+  margin: 12px 0;
+  background-color:rgb(70, 82, 158);
+  width: 50%;
+  padding: 18px 0px;
+  border-radius: 99px;
+  font-size: 18px;
+}
+
+
+/* NAV */
+
+
+nav {
+  height: 6vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(to bottom right, #284af5, #094f9f)
+}
+
+
+.nav__img--wrapper {
+  height: 36px;
+  width: 36px;
+  margin-right: 10px;
+}
+
+
+.nav__img {
+  height: 100%;
+  width: 100%;
+}
+
+
+
+
+
+
+/* LANDING PAGE  */
+
+
+#landing-page {
+  width: 100vw;
+  height: 94vh;
+  display: flex;
+  background: linear-gradient(to bottom, #8c9cef, #3f98ff);
+}
+
+
+.left50,
+.right50 {
+  width: 50%;
+  height: 100%;
+  display: flex;
+}
+
+
+.left__header2{
+  font-size: 24px;
+  padding-bottom: 12px;
+}
+
+
+.fullwidth {
+  width: 100% !important;
+  height: 100%;
+  display: flex;
+}
+
+
+
+
+#imageContainer {
+  width: 300px;
+  height: 300px;
+}
+
+
+#uploadedImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+#fileInput {
+  display: none;
+}
+
+
+
+
+
+
+.left,
+.right {
+  width: 50%;
+}
+
+
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.lp__right--results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+}
+
+
